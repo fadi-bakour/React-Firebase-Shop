@@ -5,7 +5,7 @@ import classes from './NavBar.module.css';
 import NavBarItem from './NavBarItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-function NavBar() {
+function NavBar({SignOut}) {
     const [smallNav, setSmallNav] = useState(false);
     const ToggleMenu = () => {
         setSmallNav(prevCheck => !prevCheck)
@@ -25,7 +25,7 @@ function NavBar() {
                 <NavBarItem link="/" text="My Services" />
                 <NavBarItem link="/" text="Profile" />
                 <div className={classes.navBarButtonContainer}>
-                    <Link to="/" className={classes.navBarButton}>Logout</Link>
+                    <div onClick={SignOut} className={classes.navBarButton}>Logout</div>
                 </div>
             </div>
         </div>

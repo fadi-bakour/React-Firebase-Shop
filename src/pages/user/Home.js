@@ -6,12 +6,12 @@ import NavBar from '../../components/NavBar';
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      reset: () => apis.logOutAuth()
+      SignOut: () => apis.logOutAuth()
     },
     dispatch,
   );
 
-function Home({ reset }) {
+function Home({ SignOut }) {
 
   useEffect(() => {
     document.title = 'Home';
@@ -19,8 +19,8 @@ function Home({ reset }) {
 
   return (
     <div >
-      <NavBar />
-      <h1 onClick={reset}>
+      <NavBar SignOut={SignOut}/>
+      <h1>
         home
       </h1>
       

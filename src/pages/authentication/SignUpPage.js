@@ -4,10 +4,10 @@ import { bindActionCreators } from 'redux';
 import apis from '../../apis/Apis';
 import TextInput from '../../components/TextInput';
 import Button from '../../components/Button';
-import classes from './LoginPage.module.css';
+import classes from './AuthPages.module.css';
 import { useForm } from "react-hook-form";
 import signUpImage from '../../assets/SignUp/SignUp.jpg';
-import Pattern from '../../assets/login/Pattern.jpg';
+import Pattern from '../../assets/SignUp/Pattern.jpg';
 import logo from '../../assets/logo.png';
 import { Link } from 'react-router-dom';
 
