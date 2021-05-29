@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 
 import LoginPage from './pages/authentication/LoginPage';
+import SignUpPage from './pages/authentication/SignUpPage';
 
 import Home from './pages/user/Home';
 
@@ -43,6 +44,13 @@ function App({ Token }) {
             <Redirect to={{ pathname: '/' }} />
           ) : (
             <LoginPage />
+          )}
+        </Route>
+        <Route path="/signup" exact>
+          {Token != null ? (
+            <Redirect to={{ pathname: '/' }} />
+          ) : (
+            <SignUpPage />
           )}
         </Route>
 

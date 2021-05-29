@@ -2,12 +2,12 @@ import React from 'react';
 import classes from './TextInput.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-function TextInput({ type, name, placeholder = null, icon, register, required, errors, pattern = "*", errorMessage }) {
+function TextInput({ type, name, placeholder, icon, register, required, errors, pattern, errorMessage, validate }) {
 
     return (
         <div className={classes.inputContainer}>
             <div className={classes.inputDiv}>
-                <input type={type} name={name} placeholder={placeholder} className={classes.input}  {...register(name, { required, pattern: { value: pattern } })} />
+                <input type={type} name={name} placeholder={placeholder} className={classes.input}  {...register(name, { required, pattern: { value: pattern }, validate: validate })} />
                 <div className={classes.icon}>
                     <FontAwesomeIcon icon={icon} />
                 </div>

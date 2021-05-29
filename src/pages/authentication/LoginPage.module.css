@@ -48,6 +48,12 @@
   max-width: 100%;
   font-size: 12px;
   text-align: center;
+  color: black;
+}
+
+.text:hover{
+    text-decoration: none;
+    color: #2fcc76;
 }
 
 .logo{
