@@ -29,14 +29,14 @@
 
 .input:focus {
   outline: none !important;
-  border: 2px solid #275ebe;
+  border: 2px solid #2fcc76;
 }
 
 .input:focus + .icon {
   outline: none !important;
-  border-right: 2px solid #275ebe;
+  border-right: 2px solid #2fcc76;
   height: 33px;
-  color: #275ebe;
+  color: #2fcc76;
 }
 
 .inputError {

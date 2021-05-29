@@ -3,7 +3,7 @@
   margin-top: 30px;
 }
 .formCol {
-  background-color: #275ebe;
+  background-color: #2fcc76;
   overflow: hidden;
 }
 
@@ -51,9 +51,8 @@
 }
 
 .logo{
-    height: 100px;
-    width: 100px;
-    margin: 25px auto;
+    width: 170px;
+    margin: 21px auto;
 }
 
 
@@ -62,6 +61,6 @@
     left: 0px;
     right: 0px;
     height: 100%;
-    opacity: 0.5;
+    opacity: 0.1;
     z-index: 0;
 }

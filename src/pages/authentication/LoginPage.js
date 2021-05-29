@@ -6,7 +6,7 @@ import TextInput from '../../components/TextInput';
 import Button from '../../components/Button';
 import classes from './/LoginPage.module.css';
 import { useForm } from "react-hook-form";
-import loginImage from '../../assets/login/login.jpg';
+import loginImage from '../../assets/login/login.png';
 import loginPattern from '../../assets/login/loginPattern.jpg';
 import logo from '../../assets/logo.png';
 
@@ -38,9 +38,9 @@ function LoginPage({ reset }) {
                         <TextInput type="text" name="email" placeholder="Enter Email" icon="envelope-open-text" register={register} required pattern={emailRegex} errors={errors} errorMessage="This field is required and needs to be valid email" />
                         <TextInput type="password" name="password" placeholder="*******" icon="key" register={register} required errors={errors} errorMessage="This field is required" />
                         <div className={classes.buttonDiv}>
-                            <Button text="Login" type='submit' color="blue" />
+                            <Button text="Login" type='submit' color="green" />
                         </div>
-                        <p className={classes.text}>Don't Have an Account? Sign Up</p>
+                        <p className={classes.text}>Don't Have An Account? Sign Up</p>
 
                     </form>
                 </div>
