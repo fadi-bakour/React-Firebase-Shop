@@ -38,6 +38,7 @@
   color: black;
   padding: 6px 20px;
   border-radius: 5px;
+  display: inline-block;
 }
 
 .navBarButton:hover {
@@ -52,6 +53,10 @@
 
 .bars {
   display: none;
+}
+
+.navBarButtonContainer {
+  margin-left: 10px;
 }
 
 @media (max-width: 768px) {
