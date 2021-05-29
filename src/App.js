@@ -18,7 +18,7 @@ import { connect } from 'react-redux';
 
 import 'react-toastify/dist/ReactToastify.min.css';
 
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer,Slide } from 'react-toastify';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { faCheckSquare, faCoffee, faEnvelopeOpenText,faKey } from '@fortawesome/free-solid-svg-icons'
@@ -63,7 +63,9 @@ function App({ Token }) {
         </Route>
 
       </Switch>
-      <ToastContainer />
+      <ToastContainer 
+      transition={Slide}
+      />
     </Router>
 
   );

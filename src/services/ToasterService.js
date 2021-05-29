@@ -5,7 +5,7 @@ export default function ToastService(TMessage, isSuccess = false) {
     if (isSuccess) {
         toast.success(TMessage, {
             position: "bottom-right",
-            autoClose: 2000,
+            autoClose: 4000,
             hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: true,
@@ -17,7 +17,7 @@ export default function ToastService(TMessage, isSuccess = false) {
 
     toast.error(TMessage, {
         position: "bottom-right",
-        autoClose: 2000,
+        autoClose: 4000,
         hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
