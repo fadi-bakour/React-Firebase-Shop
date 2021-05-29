@@ -1,0 +1,67 @@
+.buttonDiv {
+  text-align: center;
+  margin-top: 30px;
+}
+.formCol {
+  background-color: #275ebe;
+  overflow: hidden;
+}
+
+.formContainer {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 20px;
+}
+
+.form {
+  max-width: 100%;
+  width: 420px;
+  background: white;
+  padding: 10px;
+  margin: auto;
+  border-radius: 10px;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1;
+}
+
+.imageContainer {
+  background: white;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  width: 350px;
+  margin: 0px auto;
+  max-width: 100%;
+}
+
+.text {
+  width: 350px;
+  margin: 10px auto;
+  max-width: 100%;
+  font-size: 12px;
+  text-align: center;
+}
+
+.logo{
+    height: 100px;
+    width: 100px;
+    margin: 25px auto;
+}
+
+
+.bgPattern{
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    height: 100%;
+    opacity: 0.5;
+    z-index: 0;
+}

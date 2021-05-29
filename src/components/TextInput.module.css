@@ -1,0 +1,57 @@
+.inputContainer {
+  margin: 15px 10px;
+  position: relative;
+}
+
+.input {
+  border: 1px solid silver;
+  border-radius: 5px;
+  padding: 10px 10px 10px 50px;
+  font-size: 14px;
+  height: 35px;
+  width: 100%;
+}
+
+.icon {
+  border-right: 1px solid silver;
+  height: 35px;
+  width: 44px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  font-size: 16px;
+  position: absolute;
+  left: 0px;
+  color: silver;
+  top: 0px;
+  text-align: center;
+  padding: 5px;
+}
+
+.input:focus {
+  outline: none !important;
+  border: 2px solid #275ebe;
+}
+
+.input:focus + .icon {
+  outline: none !important;
+  border-right: 2px solid #275ebe;
+  height: 33px;
+  color: #275ebe;
+}
+
+.inputError {
+  margin-top: 8px;
+  color: red;
+  font-weight: 700;
+  font-size: 12px;
+  text-align: left;
+  margin-bottom: 0px;
+}
+
+.inputDiv {
+  position: relative !important;
+  text-align: center;
+  width: 350px;
+  margin: auto;
+  max-width: 100%;
+}

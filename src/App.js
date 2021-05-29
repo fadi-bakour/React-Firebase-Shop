@@ -1,4 +1,7 @@
-import './App.css';
+import './style/App.css';
+import './style/AppResponsive.css'
+import './style/Bootstrap.min.css'
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,6 +18,10 @@ import { connect } from 'react-redux';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 import { ToastContainer } from 'react-toastify';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { faCheckSquare, faCoffee, faEnvelopeOpenText,faKey } from '@fortawesome/free-solid-svg-icons'
+
 
 const mapStateToProps = (state) => {
   // Redux Store --> Component
@@ -24,6 +31,7 @@ const mapStateToProps = (state) => {
 };
 
 function App({ Token }) {
+  library.add(fab, faCheckSquare, faCoffee,faEnvelopeOpenText,faKey)
 
   return (
 

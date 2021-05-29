@@ -1,0 +1,11 @@
+.mw100 {
+  max-width: 100%;
+}
+
+body,
+html,
+#root,
+.row {
+  display: block;
+  height: 100%;
+}
