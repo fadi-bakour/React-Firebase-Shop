@@ -1,0 +1,105 @@
+.logo {
+  height: 45px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  padding: 7px 25px;
+  box-shadow: 0px 0px 5px 1px silver;
+  position: sticky;
+  top: 0px;
+  background: white;
+}
+
+.rightSide {
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.rightSideHide {
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.leftSide {
+  display: flex;
+  flex-direction: row;
+}
+
+.navBarButton {
+  border: 1px solid black;
+  color: black;
+  padding: 6px 20px;
+  border-radius: 5px;
+}
+
+.navBarButton:hover {
+  background: #2fcc76;
+  border: 1px solid #2fcc76;
+  color: white;
+  text-decoration: none;
+  padding: 6px 20px;
+  border-radius: 5px;
+}
+
+.bars {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .MainNav {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+  .bars {
+    display: block;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 26px;
+  }
+
+  .rightSide {
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    height: 285px;
+    overflow: hidden;
+    -webkit-transition: height 0.5s linear;
+    -moz-transition: height 0.5s linear;
+    -ms-transition: height 0.5s linear;
+    -o-transition: height 0.5s linear;
+    transition: height 0.5s linear;
+    margin: auto;
+  }
+
+  .rightSideHide {
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    height: 0px;
+    overflow: hidden;
+    -webkit-transition: height 0.5s linear;
+    -moz-transition: height 0.5s linear;
+    -ms-transition: height 0.5s linear;
+    -o-transition: height 0.5s linear;
+    transition: height 0.5s linear;
+    margin: auto;
+  }
+
+  .container {
+    display: block;
+  }
+
+  .navBarButtonContainer {
+    margin: 15px;
+  }
+}

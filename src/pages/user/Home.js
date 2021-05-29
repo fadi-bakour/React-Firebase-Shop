@@ -2,14 +2,14 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import apis from '../../apis/Apis';
-
+import NavBar from '../../components/NavBar';
 const mapDispatchToProps = (dispatch) =>
-    bindActionCreators(
-        {
-            reset: () => apis.logOutAuth()
-        },
-        dispatch,
-    );
+  bindActionCreators(
+    {
+      reset: () => apis.logOutAuth()
+    },
+    dispatch,
+  );
 
 function Home({ reset }) {
 
@@ -19,9 +19,11 @@ function Home({ reset }) {
 
   return (
     <div >
+      <NavBar />
       <h1 onClick={reset}>
         home
       </h1>
+      
 
     </div>
   )

@@ -1,0 +1,19 @@
+.navBarItem {
+  color: black;
+  margin: 0px 10px;
+}
+
+.navBarItem:hover {
+  text-decoration: none;
+  opacity: 0.7;
+  color: black;
+}
+.navBarItemContainer {
+  margin: auto;
+}
+
+@media (max-width: 768px) {
+  .navBarItemContainer {
+    margin: 10px;
+  }
+}

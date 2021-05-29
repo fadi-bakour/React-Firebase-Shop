@@ -8,4 +8,24 @@ html,
 .row {
   display: block;
   height: 100%;
+  font-family: "Poppins";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "PoppinsBold";
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../assets/fonts/Poppins-Regular.ttf");
+}
+
+@font-face {
+  font-family: "PoppinsBold";
+  src: url("../assets/fonts/Poppins-Bold.ttf");
 }

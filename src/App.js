@@ -18,10 +18,10 @@ import { connect } from 'react-redux';
 
 import 'react-toastify/dist/ReactToastify.min.css';
 
-import { ToastContainer,Slide } from 'react-toastify';
+import { ToastContainer, Slide } from 'react-toastify';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faCheckSquare, faCoffee, faEnvelopeOpenText,faKey } from '@fortawesome/free-solid-svg-icons'
+import { faCheckSquare, faCoffee, faEnvelopeOpenText, faKey, faBars } from '@fortawesome/free-solid-svg-icons'
 
 
 const mapStateToProps = (state) => {
@@ -32,7 +32,7 @@ const mapStateToProps = (state) => {
 };
 
 function App({ Token }) {
-  library.add(fab, faCheckSquare, faCoffee,faEnvelopeOpenText,faKey)
+  library.add(fab, faCheckSquare, faCoffee, faEnvelopeOpenText, faKey, faBars)
 
   return (
 
@@ -63,8 +63,8 @@ function App({ Token }) {
         </Route>
 
       </Switch>
-      <ToastContainer 
-      transition={Slide}
+      <ToastContainer
+        transition={Slide}
       />
     </Router>
 
