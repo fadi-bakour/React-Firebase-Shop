@@ -14,6 +14,12 @@ import SignUpPage from './pages/authentication/SignUpPage';
 
 import HomePage from './pages/user/HomePage';
 import ServicesPage from './pages/user/ServicesPage'
+import CreateServicePage from './pages/user/CreateServicePage'
+import EditServicePage from './pages/user/EditServicePage'
+import FavoritesPage from './pages/user/FavoritesPage'
+import MyServicesPage from './pages/user/MyServicesPage'
+import ProfilePage from './pages/user/ProfilePage'
+
 
 import { connect } from 'react-redux';
 
@@ -39,14 +45,14 @@ function App({ Token }) {
       <Switch>
 
         <Route path="/Login" exact>
-          {Token != null ? (
+          {Token !== null ? (
             <Redirect to={{ pathname: '/' }} />
           ) : (
             <LoginPage />
           )}
         </Route>
         <Route path="/SignUp" exact>
-          {Token != null ? (
+          {Token !== null ? (
             <Redirect to={{ pathname: '/' }} />
           ) : (
             <SignUpPage />
@@ -71,6 +77,61 @@ function App({ Token }) {
             <>
               <NavBar />
               <ServicesPage />
+              <Footer />
+            </>
+          )}
+        </Route>
+        <Route path="/Favorites" exact>
+          {Token == null ? (
+            <Redirect to={{ pathname: '/Login' }} />
+          ) : (
+            <>
+              <NavBar />
+              <FavoritesPage />
+              <Footer />
+            </>
+          )}
+        </Route>
+        <Route path="/MyServices" exact>
+          {Token == null ? (
+            <Redirect to={{ pathname: '/Login' }} />
+          ) : (
+            <>
+              <NavBar />
+              <MyServicesPage />
+              <Footer />
+            </>
+          )}
+        </Route>
+        <Route path="/Profile" exact>
+          {Token == null ? (
+            <Redirect to={{ pathname: '/Login' }} />
+          ) : (
+            <>
+              <NavBar />
+              <ProfilePage />
+              <Footer />
+            </>
+          )}
+        </Route>
+        <Route path="/MyServices/Create" exact>
+          {Token == null ? (
+            <Redirect to={{ pathname: '/Login' }} />
+          ) : (
+            <>
+              <NavBar />
+              <CreateServicePage />
+              <Footer />
+            </>
+          )}
+        </Route>
+        <Route path="/MyServices/Edit" exact>
+          {Token == null ? (
+            <Redirect to={{ pathname: '/Login' }} />
+          ) : (
+            <>
+              <NavBar />
+              <EditServicePage />
               <Footer />
             </>
           )}
