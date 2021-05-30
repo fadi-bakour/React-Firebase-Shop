@@ -10,19 +10,19 @@ import signUpImage from '../../assets/SignUp/SignUp.jpg';
 import Pattern from '../../assets/SignUp/Pattern.jpg';
 import logo from '../../assets/logo.png';
 import { Link } from 'react-router-dom';
-import { FaKey,FaEnvelopeOpenText } from 'react-icons/fa';
+import { FaKey, FaEnvelopeOpenText } from 'react-icons/fa';
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            reset: () => apis.loginAuth('token')
+            SignUp: ({ email, password }) => apis.signUpAuth({ email, password })
         },
         dispatch,
     );
 
-function SignUpPage({ reset }) {
-    const onSubmit = (data) => {
-        reset()
+function SignUpPage({ SignUp }) {
+    const onSubmit = ({ email, password }) => {
+        SignUp({ email, password })
     };
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const CurrentPassword = watch("password");
@@ -45,9 +45,9 @@ function SignUpPage({ reset }) {
                     <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
                         <img src={logo} alt="Logo" className={classes.logo} />
                         <h4 className={classes.title}>SignUp</h4>
-                        <TextInput type="text" name="email" placeholder="Enter Email" icon={<FaEnvelopeOpenText/>} register={register} required pattern={emailRegex} errors={errors} errorMessage="This field is required and needs to be valid email" />
-                        <TextInput type="password" name="password" placeholder="*******" icon={<FaKey/>} register={register} required errors={errors} errorMessage="This field is required" />
-                        <TextInput type="password" name="Conform password" placeholder="*******" icon={<FaKey/>} register={register} required errors={errors} errorMessage="This field is required and Password Must Match" validate={Match} />
+                        <TextInput type="text" name="email" placeholder="Enter Email" icon={<FaEnvelopeOpenText />} register={register} required pattern={emailRegex} errors={errors} errorMessage="This field is required and needs to be valid email" />
+                        <TextInput type="password" name="password" placeholder="*******" icon={<FaKey />} register={register} required errors={errors} errorMessage="This field is required" />
+                        <TextInput type="password" name="Conform password" placeholder="*******" icon={<FaKey />} register={register} required errors={errors} errorMessage="This field is required and Password Must Match" validate={Match} />
 
                         <div className={classes.buttonDiv}>
                             <Button text="Sign Up" type='submit' color="green" />

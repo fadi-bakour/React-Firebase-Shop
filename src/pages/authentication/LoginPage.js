@@ -15,14 +15,14 @@ import { FaKey,FaEnvelopeOpenText } from 'react-icons/fa';
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            reset: () => apis.loginAuth('token')
+            Login: ({email,password}) => apis.loginAuth({email,password})
         },
         dispatch,
     );
 
-function LoginPage({ reset }) {
-    const onSubmit = (data) => {
-        reset()
+function LoginPage({ Login }) {
+    const onSubmit = ({email,password}) => {
+        Login({email,password})
     };
     const { register, handleSubmit, formState: { errors } } = useForm();
     const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;

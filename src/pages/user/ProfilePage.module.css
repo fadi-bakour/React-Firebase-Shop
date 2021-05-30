@@ -1,0 +1,12 @@
+.buttonDiv {
+  text-align: center;
+  margin: 50px;
+}
+
+.profileImage {
+    margin: 30px;
+    width: 135px;
+    border: 2px solid silver;
+    border-radius: 100%;
+    padding: 12px;
+}
