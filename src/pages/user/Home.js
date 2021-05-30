@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import apis from '../../apis/Apis';
 import NavBar from '../../components/NavBar';
+import CarouselSlider from '../../components/CarouselSlider';
+
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
@@ -19,12 +21,8 @@ function Home({ SignOut }) {
 
   return (
     <div >
-      <NavBar SignOut={SignOut}/>
-      <h1>
-        home
-      </h1>
-      
-
+      <NavBar SignOut={SignOut} />
+      <CarouselSlider/>
     </div>
   )
 }
