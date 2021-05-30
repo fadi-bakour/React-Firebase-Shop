@@ -12,17 +12,17 @@ import {
 import LoginPage from './pages/authentication/LoginPage';
 import SignUpPage from './pages/authentication/SignUpPage';
 
-import Home from './pages/user/Home';
+import HomePage from './pages/user/HomePage';
+import ServicesPage from './pages/user/ServicesPage'
 
 import { connect } from 'react-redux';
 
 import 'react-toastify/dist/ReactToastify.min.css';
 
 import { ToastContainer, Slide } from 'react-toastify';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faCheckSquare, faCoffee, faEnvelopeOpenText, faKey, faBars } from '@fortawesome/free-solid-svg-icons'
 
+import NavBar from './components/NavBar';
+import Footer from './components/Footer'
 
 const mapStateToProps = (state) => {
   // Redux Store --> Component
@@ -32,21 +32,20 @@ const mapStateToProps = (state) => {
 };
 
 function App({ Token }) {
-  library.add(fab, faCheckSquare, faCoffee, faEnvelopeOpenText, faKey, faBars)
 
   return (
 
     <Router>
       <Switch>
 
-        <Route path="/login" exact>
+        <Route path="/Login" exact>
           {Token != null ? (
             <Redirect to={{ pathname: '/' }} />
           ) : (
             <LoginPage />
           )}
         </Route>
-        <Route path="/signup" exact>
+        <Route path="/SignUp" exact>
           {Token != null ? (
             <Redirect to={{ pathname: '/' }} />
           ) : (
@@ -56,9 +55,24 @@ function App({ Token }) {
 
         <Route path="/" exact>
           {Token == null ? (
-            <Redirect to={{ pathname: '/login' }} />
+            <Redirect to={{ pathname: '/Login' }} />
           ) : (
-            <Home />
+            <>
+              <NavBar />
+              <HomePage />
+              <Footer />
+            </>
+          )}
+        </Route>
+        <Route path="/Services" exact>
+          {Token == null ? (
+            <Redirect to={{ pathname: '/Login' }} />
+          ) : (
+            <>
+              <NavBar />
+              <ServicesPage />
+              <Footer />
+            </>
           )}
         </Route>
 

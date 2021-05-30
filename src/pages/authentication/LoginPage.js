@@ -10,6 +10,7 @@ import loginImage from '../../assets/login/login.png';
 import Pattern from '../../assets/login/Pattern.jpg';
 import logo from '../../assets/logo.png';
 import { Link } from 'react-router-dom';
+import { FaKey,FaEnvelopeOpenText } from 'react-icons/fa';
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
@@ -36,8 +37,8 @@ function LoginPage({ reset }) {
                     <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
                         <img src={logo} alt="Logo" className={classes.logo} />
                         <h4 className={classes.title}>Log In</h4>
-                        <TextInput type="text" name="email" placeholder="Enter Email" icon="envelope-open-text" register={register} required pattern={emailRegex} errors={errors} errorMessage="This field is required and needs to be valid email" />
-                        <TextInput type="password" name="password" placeholder="*******" icon="key" register={register} required errors={errors} errorMessage="This field is required" />
+                        <TextInput type="text" name="email" placeholder="Enter Email" icon={<FaEnvelopeOpenText/>} register={register} required pattern={emailRegex} errors={errors} errorMessage="This field is required and needs to be valid email" />
+                        <TextInput type="password" name="password" placeholder="*******" icon={<FaKey/>} register={register} required errors={errors} errorMessage="This field is required" />
                         <div className={classes.buttonDiv}>
                             <Button text="Login" type='submit' color="green" />
                         </div>

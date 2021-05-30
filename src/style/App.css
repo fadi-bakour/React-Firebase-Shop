@@ -2,6 +2,10 @@
   max-width: 100%;
 }
 
+.mh300 {
+  max-height: 300px;
+}
+
 body,
 html,
 #root,
