@@ -8,10 +8,18 @@ import Button from '../../components/Button';
 import { FaUser, FaEnvelopeOpenText, FaMap } from 'react-icons/fa';
 import firebase from "firebase/app";
 import "firebase/auth";
-
+import {useHistory} from 'react-router-dom';
 function ProfilePage() {
-    const onSubmit = ({ email, FullName, address }) => {
-        apis.UpdateUserData({ email, FullName, address })
+    const history = useHistory();
+    const onSubmit = ({ email, fullName, address, addressTwo }) => {
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                const userId = user.uid;
+                apis.UpdateUserData({ email, fullName, address, addressTwo,userId,history});
+            } else {
+                console.log('failed')
+            }
+        });
     };
     const { register, handleSubmit, formState: { errors } } = useForm();
     const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -49,9 +57,9 @@ function ProfilePage() {
                 <img src={Header} className={classes.profileImage} />
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <TextInput type="text" name="FullName" defaultValue={fullName} placeholder="Full Name" icon={<FaUser />} register={register} required errors={errors} errorMessage="This field is required" />
+                <TextInput type="text" name="fullName" defaultValue={fullName} placeholder="Full Name" icon={<FaUser />} register={register} required errors={errors} errorMessage="This field is required" />
                 <TextInput type="text" name="email" defaultValue={email} placeholder="Enter Email" icon={<FaEnvelopeOpenText />} register={register} required pattern={emailRegex} errors={errors} errorMessage="This field is required and needs to be valid email" />
-                <TextInput type="text" name="addressOne" defaultValue={address} placeholder="Address 1" icon={<FaMap />} register={register} required errors={errors} errorMessage="This field is required" />
+                <TextInput type="text" name="address" defaultValue={address} placeholder="Address 1" icon={<FaMap />} register={register} required errors={errors} errorMessage="This field is required" />
                 <TextInput type="text" name="addressTwo" defaultValue={addressTwo} placeholder="Address 2" icon={<FaMap />} register={register} required errors={errors} errorMessage="This field is required" />
 
                 <div className={classes.buttonDiv}>

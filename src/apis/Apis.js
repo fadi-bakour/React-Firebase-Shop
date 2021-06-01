@@ -14,7 +14,6 @@ import "firebase/database";
 
 import "firebase/firestore";
 import { FaCreativeCommonsNc } from 'react-icons/fa';
-
 // For Firebase JavaScript SDK v7.20.0 and later, `measurementId` is an optional field
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -30,16 +29,6 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
-var auth;
-
-firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-        auth = user
-        // User is signed in.
-    } else {
-        // No user is signed in.
-    }
-});
 
 
 class Apis {
@@ -104,7 +93,6 @@ class Apis {
 
     userData = (user) => {
         return (async () => {
-            console.log(user.uid)
             return await database
                 .ref('/users/' + user.uid)
                 .once('value')
@@ -116,8 +104,24 @@ class Apis {
         })();
     };
 
-    UpdateUserData = (UserData) => {
-        console.log(UserData)
+    UpdateUserData = ({email, fullName, address, addressTwo, userId,history}) => {
+        firebase.database().ref('users/' + userId).set({
+            email: email,
+            fullName: fullName,
+            address: address,
+            addressTwo: addressTwo
+        }, (error) => {
+            if (error) {
+                console.log(error)
+                // The write failed...
+            } else {
+                ToastService('User Information Updated', true);
+                history.push('/')
+
+                // Data saved successfully!
+
+            }
+        });
     }
 }
 
