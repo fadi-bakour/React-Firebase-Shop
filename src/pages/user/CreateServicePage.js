@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import Header from '../../assets/services/header.png'
 import classes from './ServicesPage.module.css'
-import { useForm } from "react-hook-form";
 
 function CreateServicePage() {
     useEffect(() => {
@@ -12,7 +11,7 @@ function CreateServicePage() {
         <div>
             <div className={classes.headerContainer}>
                 <div className="container">
-                    <img src={Header} alt="header" className={classes.header} />
+                    <img src={Header} alt="header" className={classes.header}/>
                 </div>
             </div>
             this is create

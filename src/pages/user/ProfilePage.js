@@ -8,27 +8,26 @@ import Button from '../../components/Button';
 import { FaUser, FaEnvelopeOpenText, FaMap } from 'react-icons/fa';
 import firebase from "firebase/app";
 import "firebase/auth";
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 function ProfilePage() {
     const history = useHistory();
     const onSubmit = ({ email, fullName, address, addressTwo }) => {
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
                 const userId = user.uid;
-                apis.UpdateUserData({ email, fullName, address, addressTwo,userId,history});
+                apis.UpdateUserData({ email, fullName, address, addressTwo, userId, history });
             } else {
                 console.log('failed')
             }
         });
     };
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm();
     const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
     const [email, setEmail] = useState('');
     const [fullName, setFullName] = useState('');
     const [address, setAddress] = useState('');
     const [addressTwo, setAddressTwo] = useState('');
-
     useEffect(() => {
         document.title = 'Profile';
         firebase.auth().onAuthStateChanged(function (user) {
@@ -38,13 +37,17 @@ function ProfilePage() {
                     setFullName(res.fullName)
                     setAddress(res.address)
                     setAddressTwo(res.addressTwo)
+                    setValue('fullName', res.fullName)
+                    setValue('email',res.email)
+                    setValue('address',res.address)
+                    setValue('addressTwo',res.addressTwo)
                 });// This is be executed when `loading` state changes
             } else {
                 // No user is signed in.
             }
         });
 
-    }, [])
+    }, [setValue])
 
 
     return (
@@ -54,7 +57,7 @@ function ProfilePage() {
                 <p>If you want to publish your services all of your information needs to be filled</p>
             </div>
             <div className="text-center">
-                <img src={Header} className={classes.profileImage} />
+                <img src={Header} className={classes.profileImage}  alt=""/>
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <TextInput type="text" name="fullName" defaultValue={fullName} placeholder="Full Name" icon={<FaUser />} register={register} required errors={errors} errorMessage="This field is required" />

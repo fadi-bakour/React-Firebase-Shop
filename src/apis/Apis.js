@@ -13,7 +13,6 @@ import "firebase/auth";
 import "firebase/database";
 
 import "firebase/firestore";
-import { FaCreativeCommonsNc } from 'react-icons/fa';
 // For Firebase JavaScript SDK v7.20.0 and later, `measurementId` is an optional field
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -64,9 +63,8 @@ class Apis {
         return (dispatch) => {
 
             firebase.auth().signInWithEmailAndPassword(email, password)
-                .then((userCredential) => {
+                .then(() => {
                     // Signed in
-                    var user = userCredential.user;
                     ToastService('Logged In Successfully', true);
                     dispatch(Login('Token'));
                     // ...

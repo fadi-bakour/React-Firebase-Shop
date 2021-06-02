@@ -25,7 +25,7 @@ function Card() {
                     </div>
                 </div>
                 <div className={classes.body}>
-                    <img src={Image} className={classes.cardImage} />
+                    <img src={Image} className={classes.cardImage} alt=""/>
                 </div>
                 <div className={classes.footer}>
                     <div>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</div>

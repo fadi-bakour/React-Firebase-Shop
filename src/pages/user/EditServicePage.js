@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import Header from '../../assets/services/header.png'
 import classes from './ServicesPage.module.css'
-import { useForm } from "react-hook-form";
 
 function EditServicePage() {
     useEffect(() => {
