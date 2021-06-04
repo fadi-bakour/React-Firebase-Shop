@@ -102,7 +102,7 @@ class Apis {
         })();
     };
 
-    UpdateUserData = ({email, fullName, address, addressTwo, userId,history}) => {
+    UpdateUserData = ({ email, fullName, address, addressTwo, userId, history }) => {
         firebase.database().ref('users/' + userId).set({
             email: email,
             fullName: fullName,
@@ -120,6 +120,40 @@ class Apis {
 
             }
         });
+    };
+
+    CreateProduct = ({ title, description, history, userId }) => {
+        firebase.database().ref('products/' + userId + '/' + title).set({
+            title: title,
+            description: description,
+        }, (error) => {
+            if (error) {
+                console.log(error)
+                // The write failed...
+            } else {
+                ToastService('Service Created Successfully', true);
+                history.push('/')
+
+                // Data saved successfully!
+
+            }
+        });
+    };
+
+    GetUserProduct = (user) => {
+        return (async () => {
+            return await database
+                .ref('/products/' + user.uid)
+                .once('value')
+                .then(snapshot => {
+                    var response = snapshot.val()
+                    var arr = [];
+                    arr.push(Object.values(response));
+                    return arr[0];
+                }).catch((err) => {
+                    console.log(err)
+                });
+        })();
     }
 }
 
