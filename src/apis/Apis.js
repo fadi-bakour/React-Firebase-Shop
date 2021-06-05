@@ -154,7 +154,30 @@ class Apis {
                     console.log(err)
                 });
         })();
+    };
+
+    GetAllProducts = () => {
+        return (async () => {
+            return await database
+                .ref('/products')
+                .once('value')
+                .then(snapshot => {
+                    var allProducts = Object.values(snapshot.val());
+                    var product = [];
+                    var allProductsValues = [];
+                    for (let i = 0; i < allProducts.length; i++) {
+                        product = Object.values(allProducts[i]);
+                        for (let j = 0; j < product.length; j++) {
+                            allProductsValues.push(product[j]);
+                        }
+                    }
+                    return allProductsValues;
+                }).catch((err) => {
+                    console.log(err)
+                });
+        })();
     }
+
 }
 
 const apis = new Apis(); // TODO: create instance in another place

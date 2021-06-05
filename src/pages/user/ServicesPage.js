@@ -1,16 +1,23 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from '../../assets/services/header.png'
 import classes from './ServicesPage.module.css'
 import Card from '../../components/Card'
 import SearchInput from '../../components/SearchInput';
 import { useForm } from "react-hook-form";
 import { FaSearch } from 'react-icons/fa';
+import apis from '../../apis/Apis';
+
 function ServicesPage() {
+    const [products, setProducts] = useState([]);
+    const { register, watch } = useForm();
+
     useEffect(() => {
-        document.title = 'Services';
+        document.title = 'My Services';
+        apis.GetAllProducts().then((res) => {
+            setProducts(res);
+        });
     }, []);
 
-    const { register, watch } = useForm();
     const Search = watch("Search");
     if (typeof Search !== 'undefined' && Search.trim() !== '') {
         console.log(Search)
@@ -34,9 +41,11 @@ function ServicesPage() {
             </div>
             <div className={`container ${classes.cardsContainer}`}>
                 <div className="row mt-4 mb-4">
-                    <Card />
-                    <Card />
-                    <Card />
+                    {products.map((product, index) => {
+                        return (
+                            <Card key={product.title} title={product.title} description={product.description} user={'Owner'} />
+                        )
+                    })}
                 </div>
             </div>
         </div>
