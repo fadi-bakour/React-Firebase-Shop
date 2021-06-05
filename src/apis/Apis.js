@@ -132,7 +132,7 @@ class Apis {
                 // The write failed...
             } else {
                 ToastService('Service Created Successfully', true);
-                history.push('/')
+                history.push('/MyServices')
 
                 // Data saved successfully!
 

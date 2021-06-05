@@ -43,11 +43,16 @@ function MyServicesPage() {
             </div>
             <div className={`container ${classes.cardsContainer}`}>
                 <div className="row mt-4 mb-4">
-                    {products.map((product, index) => {
-                        return (
-                            <Card key={product.title} title={product.title} description={product.description} user={'Owner'} />
-                        )
-                    })}
+                    {!products ?
+                        <h3 className="col-12 text-center mt-5 mb-5"> You have no products </h3>
+                        :
+                        products.map((product, index) => {
+                            return (
+                                <Card key={product.title} title={product.title} description={product.description} user={'Owner'} />
+                            )
+                        })
+                    }
+
                 </div>
             </div>
         </div>
