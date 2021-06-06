@@ -13,7 +13,7 @@ function MyServicesPage() {
     const [products, setProducts] = useState([]);
     useEffect(() => {
         document.title = 'My Services';
-        firebase.auth().onAuthStateChanged(function (user) {
+        var myServices = firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
                 apis.GetUserProduct(user).then((res) => {
                     setProducts(res);
@@ -22,7 +22,7 @@ function MyServicesPage() {
                 // No user is signed in.
             }
         });
-
+        myServices()
 
     }, []);
     return (

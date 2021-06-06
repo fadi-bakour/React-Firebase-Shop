@@ -14,7 +14,7 @@ import { useHistory } from 'react-router-dom';
 function CreateServicePage() {
     const history = useHistory();
     const onSubmit = ({ title, description }) => {
-        firebase.auth().onAuthStateChanged(function (user) {
+        var createService = firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
                 const userId = user.uid;
                 apis.CreateProduct({ title, description, history, userId });
@@ -23,6 +23,7 @@ function CreateServicePage() {
             }
 
         });
+        createService();
     };
     const { register, handleSubmit, formState: { errors } } = useForm();
     useEffect(() => {

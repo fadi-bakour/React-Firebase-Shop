@@ -12,7 +12,7 @@ import { useHistory } from 'react-router-dom';
 function ProfilePage() {
     const history = useHistory();
     const onSubmit = ({ email, fullName, address, addressTwo }) => {
-        firebase.auth().onAuthStateChanged(function (user) {
+        var update = firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
                 const userId = user.uid;
                 apis.UpdateUserData({ email, fullName, address, addressTwo, userId, history });
@@ -20,6 +20,7 @@ function ProfilePage() {
                 console.log('failed')
             }
         });
+        update();
     };
     const { register, handleSubmit, formState: { errors }, setValue } = useForm();
     const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -30,7 +31,7 @@ function ProfilePage() {
     const [addressTwo, setAddressTwo] = useState('');
     useEffect(() => {
         document.title = 'Profile';
-        firebase.auth().onAuthStateChanged(function (user) {
+        var getData = firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
                 apis.userData(user).then((res) => {
                     setEmail(res.email)
@@ -38,10 +39,11 @@ function ProfilePage() {
                     setAddress(res.address)
                     setAddressTwo(res.addressTwo)
                     setValue('fullName', res.fullName)
-                    setValue('email',res.email)
-                    setValue('address',res.address)
-                    setValue('addressTwo',res.addressTwo)
+                    setValue('email', res.email)
+                    setValue('address', res.address)
+                    setValue('addressTwo', res.addressTwo)
                 });// This is be executed when `loading` state changes
+                getData()
             } else {
                 // No user is signed in.
             }
@@ -57,7 +59,7 @@ function ProfilePage() {
                 <p>If you want to publish your services all of your information needs to be filled</p>
             </div>
             <div className="text-center">
-                <img src={Header} className={classes.profileImage}  alt=""/>
+                <img src={Header} className={classes.profileImage} alt="" />
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <TextInput type="text" name="fullName" defaultValue={fullName} placeholder="Full Name" icon={<FaUser />} register={register} required errors={errors} errorMessage="This field is required" />
