@@ -1,6 +1,5 @@
 import React from 'react'
 import classes from './Card.module.css'
-import Image from '../assets/services/header.png'
 import { FaEdit } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 function Card({ title, description, user, edit, id, photo }) {

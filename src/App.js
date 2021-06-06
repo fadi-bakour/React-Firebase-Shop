@@ -16,7 +16,7 @@ import HomePage from './pages/user/HomePage';
 import ServicesPage from './pages/user/ServicesPage'
 import CreateServicePage from './pages/user/CreateServicePage'
 import EditServicePage from './pages/user/EditServicePage'
-import FavoritesPage from './pages/user/FavoritesPage'
+// import FavoritesPage from './pages/user/FavoritesPage'
 import MyServicesPage from './pages/user/MyServicesPage'
 import ProfilePage from './pages/user/ProfilePage'
 

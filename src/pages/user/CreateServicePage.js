@@ -44,7 +44,6 @@ function CreateServicePage() {
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <TextInput type="text" name="title" placeholder="Set Title of Service" icon={<FaBlog />} register={register} required errors={errors} errorMessage="This field is required" />
                     <TextInput type="text" name="description" placeholder="Set Description" icon={<FaBlog />} register={register} required errors={errors} errorMessage="This field is required" />
-                    <TextInput type="text" name="description" placeholder="Set Description" icon={<FaBlog />} register={register} required errors={errors} errorMessage="This field is required" />
                     <ImageInput type="file" name="photo" register={register} required errors={errors} errorMessage="This field is required" />
                     <div className={classes.buttonDiv}>
                         <Button text="Create Service" type='submit' color="green" />

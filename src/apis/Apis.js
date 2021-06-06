@@ -206,7 +206,7 @@ class Apis {
             .then(snapshot => {
                 return snapshot.val().fullName;
             }).then((res) => {
-                if (photo.length != 0) {
+                if (photo.length !== 0) {
                     storage.ref('/products/' + userId + '/' + serviceId).delete().then(() => {
                         storage.ref('/products/' + userId + '/' + serviceId).put(photo[0], photo[0].type).then(() => {
                             firebase.database().ref('services/' + userId + '/' + serviceId).set({

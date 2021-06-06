@@ -61,7 +61,7 @@ function EditServicePage() {
             }
         });
         return () => getData()
-    }, [setValue]);
+    }, [setValue,location]);
 
     return (
         <div>
