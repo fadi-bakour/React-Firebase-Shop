@@ -20,7 +20,7 @@ function MyServicesPage() {
                     if (res) {
                         for (let i = 0; i < res.length; i++) {
                             // Create a reference with an initial file path and name
-                            var photo = await firebase.storage().ref('products/' + user.uid + '/' + res[i][0]).getDownloadURL().then((photo) => {
+                            var photo = await firebase.storage().ref('services/' + user.uid + '/' + res[i][0]).getDownloadURL().then((photo) => {
                                 return photo
                             });
                             res[i][1].photo = photo;

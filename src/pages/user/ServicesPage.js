@@ -23,7 +23,7 @@ function ServicesPage() {
                     for (let j = 0; j< data.length;j++){
                         let ServiceId = data[j][0];
                         let ServiceData = data[j][1];
-                        var photo = await firebase.storage().ref('products/' + userId + '/' + ServiceId).getDownloadURL().then((photo) => {
+                        var photo = await firebase.storage().ref('services/' + userId + '/' + ServiceId).getDownloadURL().then((photo) => {
                             return photo
                         });
                         ServiceData.photo = photo;

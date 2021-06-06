@@ -138,7 +138,7 @@ class Apis {
                 var postListRef = firebase.database().ref('services/' + userId);
                 var newPostRef = postListRef.push();
                 var serviceId = newPostRef.key;
-                storage.ref('/products/' + userId + '/' + serviceId).put(photo[0], photo[0].type).then(() => {
+                storage.ref('/services/' + userId + '/' + serviceId).put(photo[0], photo[0].type).then(() => {
                     newPostRef.set({
                         owner: fullName,
                         title: title,
@@ -207,8 +207,8 @@ class Apis {
                 return snapshot.val().fullName;
             }).then((res) => {
                 if (photo.length !== 0) {
-                    storage.ref('/products/' + userId + '/' + serviceId).delete().then(() => {
-                        storage.ref('/products/' + userId + '/' + serviceId).put(photo[0], photo[0].type).then(() => {
+                    storage.ref('/services/' + userId + '/' + serviceId).delete().then(() => {
+                        storage.ref('/services/' + userId + '/' + serviceId).put(photo[0], photo[0].type).then(() => {
                             firebase.database().ref('services/' + userId + '/' + serviceId).set({
                                 owner: res,
                                 title: title,
@@ -258,7 +258,7 @@ class Apis {
                 .once('value')
                 .then(async snapshot => {
                     var response = snapshot.val();
-                    var photo = await firebase.storage().ref('products/' + user.uid + '/' + serviceId).getDownloadURL().then((photo) => {
+                    var photo = await firebase.storage().ref('services/' + user.uid + '/' + serviceId).getDownloadURL().then((photo) => {
                         return photo
                     });
                     response.photo = photo
@@ -270,7 +270,7 @@ class Apis {
     };
 
     DeleteService = ({ user, serviceId, history }) => {
-        firebase.storage().ref('/products/' + user.uid + '/' + serviceId).delete().then(() => {
+        firebase.storage().ref('/services/' + user.uid + '/' + serviceId).delete().then(() => {
             database.ref('/services/' + user.uid + '/' + serviceId).remove().then(() => {
                 ToastService('Service Deleted', true);
                 history.push('/MyServices')
