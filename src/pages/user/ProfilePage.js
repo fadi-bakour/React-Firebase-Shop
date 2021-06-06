@@ -47,7 +47,7 @@ function ProfilePage() {
                 // No user is signed in.
             }
         });
-        getData()
+        return () => getData()
     }, [setValue])
 
 

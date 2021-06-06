@@ -134,27 +134,28 @@ class Apis {
                     return;
                 }
                 return snapshot.val().fullName;
-            }).then((res) => {
+            }).then((fullName) => {
                 var postListRef = firebase.database().ref('services/' + userId);
                 var newPostRef = postListRef.push();
                 var serviceId = newPostRef.key;
-                storage.ref('/products/' + userId + '/' + serviceId).put(photo[0], photo[0].type)
-                newPostRef.set({
-                    owner: res,
-                    title: title,
-                    description: description,
-                }, (error) => {
-                    if (error) {
-                        console.log(error)
-                        // The write failed...
-                    } else {
-                        ToastService('Service Created Successfully', true);
-                        history.push('/MyServices')
-
-                        // Data saved successfully!
-
-                    }
-                });
+                storage.ref('/products/' + userId + '/' + serviceId).put(photo[0], photo[0].type).then(() => {
+                    newPostRef.set({
+                        owner: fullName,
+                        title: title,
+                        description: description,
+                    }, (error) => {
+                        if (error) {
+                            console.log(error)
+                            // The write failed...
+                        } else {
+                            ToastService('Service Created Successfully', true);
+                            history.push('/MyServices')
+    
+                            // Data saved successfully!
+    
+                        }
+                    });
+                })
             }).catch((err) => {
                 console.log(err)
             });
@@ -167,10 +168,13 @@ class Apis {
                 .ref('/services/' + user.uid)
                 .once('value')
                 .then(snapshot => {
-                    var response = snapshot.val()
-                    var arr = [];
-                    var responseArray = Object.entries(response);
-                    return responseArray;
+                    var response = snapshot.val();
+                    if (response) {
+                        response = Object.entries(response);
+                        return response;
+                    }else{
+                        return response;
+                    }
                 }).catch((err) => {
                     console.log(err)
                 });
@@ -183,16 +187,13 @@ class Apis {
                 .ref('/services')
                 .once('value')
                 .then(snapshot => {
-                    var allServices = Object.values(snapshot.val());
-                    var service = [];
-                    var allServicesValues = [];
-                    for (let i = 0; i < allServices.length; i++) {
-                        service = Object.values(allServices[i]);
-                        for (let j = 0; j < service.length; j++) {
-                            allServicesValues.push(service[j]);
-                        }
+                    var response = snapshot.val();
+                    if (response) {
+                        response = Object.entries(response);
+                        return response;
+                    }else{
+                        return response;
                     }
-                    return allServicesValues;
                 }).catch((err) => {
                     console.log(err)
                 });

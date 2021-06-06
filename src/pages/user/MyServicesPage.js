@@ -29,7 +29,7 @@ function MyServicesPage() {
                         }
                         setServices(services);
                     } else {
-                        setServices('');
+                        setServices(null);
                     }
 
                 });// This is be executed when `loading` state changes
@@ -58,11 +58,10 @@ function MyServicesPage() {
             </div>
             <div className={`container ${classes.cardsContainer}`}>
                 <div className="row mt-4 mb-4">
-                    {!services ?
+                    {services == null ?
                         <h3 className="col-12 text-center mt-5 mb-5"> You have no services </h3>
                         :
                         services.map((service, index) => {
-                            console.log(service.photo)
                             return (
                                 <Card key={service.id} title={service.title} description={service.description} user={service.owner} edit={true} id={service.id} photo={service.photo} />
                             )
