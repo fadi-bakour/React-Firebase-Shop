@@ -11,7 +11,7 @@ import "firebase/analytics";
 // Add the Firebase products that you want to use
 import "firebase/auth";
 import "firebase/database";
-
+import 'firebase/storage';
 import "firebase/firestore";
 // For Firebase JavaScript SDK v7.20.0 and later, `measurementId` is an optional field
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -28,6 +28,8 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
+var storage = firebase.storage();
+
 
 
 class Apis {
@@ -122,7 +124,7 @@ class Apis {
         });
     };
 
-    CreateService = async ({ title, description, history, userId }) => {
+    CreateService = async ({ title, description, photo, history, userId }) => {
         database.ref('/users/' + userId)
             .once('value')
             .then(snapshot => {
@@ -135,6 +137,8 @@ class Apis {
             }).then((res) => {
                 var postListRef = firebase.database().ref('services/' + userId);
                 var newPostRef = postListRef.push();
+                var serviceId = newPostRef.key;
+                storage.ref('/products/' + userId + '/' + serviceId).put(photo[0], photo[0].type)
                 newPostRef.set({
                     owner: res,
                     title: title,
@@ -222,8 +226,8 @@ class Apis {
             });
     };
 
-    
-    ServiceData = (user,serviceId) => {
+
+    ServiceData = (user, serviceId) => {
         return (async () => {
             return await database
                 .ref('/services/' + user.uid + '/' + serviceId)

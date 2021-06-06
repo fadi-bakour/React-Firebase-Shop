@@ -1,0 +1,23 @@
+.inputContainer {
+  margin: 10px 10px;
+  position: relative;
+  text-align: center;
+}
+
+.inputError {
+    margin-top: 8px;
+    color: red;
+    font-weight: 700;
+    font-size: 12px;
+    text-align: left;
+    margin-bottom: 0px;
+  }
+
+  .inputDiv {
+    position: relative !important;
+    text-align: center;
+    width: 350px;
+    margin: auto;
+    max-width: 100%;
+  }
+  

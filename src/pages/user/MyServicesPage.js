@@ -16,14 +16,19 @@ function MyServicesPage() {
         const myServices = firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
                 let services = [];
-                apis.GetUserServices(user).then((res) => {
+                apis.GetUserServices(user).then(async (res) => {
                     if (res) {
                         for (let i = 0; i < res.length; i++) {
+                            // Create a reference with an initial file path and name
+                            var photo = await firebase.storage().ref('products/' + user.uid + '/' + res[i][0]).getDownloadURL().then((photo) => {
+                                return photo
+                            });
+                            res[i][1].photo = photo;
                             res[i][1].id = res[i][0];
                             services.push(res[i][1])
                         }
                         setServices(services);
-                    }else{
+                    } else {
                         setServices('');
                     }
 
@@ -57,8 +62,9 @@ function MyServicesPage() {
                         <h3 className="col-12 text-center mt-5 mb-5"> You have no services </h3>
                         :
                         services.map((service, index) => {
+                            console.log(service.photo)
                             return (
-                                <Card key={service.title} title={service.title} description={service.description} user={service.owner} edit={true} id={service.id} />
+                                <Card key={service.id} title={service.title} description={service.description} user={service.owner} edit={true} id={service.id} photo={service.photo} />
                             )
                         })
                     }

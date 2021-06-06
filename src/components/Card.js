@@ -3,7 +3,7 @@ import classes from './Card.module.css'
 import Image from '../assets/services/header.png'
 import { FaEdit } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-function Card({ title, description, user, edit,id }) {
+function Card({ title, description, user, edit, id, photo }) {
     return (
         <div className="col-lg-4 col-md-6 mt-3 mb-3">
             <div className={classes.container}>
@@ -29,7 +29,7 @@ function Card({ title, description, user, edit,id }) {
                     }
                 </div>
                 <div className={classes.body}>
-                    <img src={Image} className={classes.cardImage} alt="" />
+                    <img src={photo} className={classes.cardImage} alt="" />
                 </div>
                 <div className={classes.footer}>
                     <div>{description}</div>

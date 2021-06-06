@@ -3,6 +3,7 @@ import Header from '../../assets/services/header.png'
 import classes from './CreateServicePage.module.css'
 import apis from '../../apis/Apis';
 import TextInput from '../../components/TextInput';
+import ImageInput from '../../components/ImageInput';
 import { useForm } from "react-hook-form";
 import Button from '../../components/Button';
 import { FaBlog } from 'react-icons/fa';
@@ -13,11 +14,11 @@ import { useHistory } from 'react-router-dom';
 
 function CreateServicePage() {
     const history = useHistory();
-    const onSubmit = ({ title, description }) => {
+    const onSubmit = ({ title, description, photo }) => {
         var createService = firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
                 const userId = user.uid;
-                apis.CreateService({ title, description, history, userId });
+                apis.CreateService({ title, description, photo, history, userId });
             } else {
                 console.log('failed')
             }
@@ -43,7 +44,8 @@ function CreateServicePage() {
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <TextInput type="text" name="title" placeholder="Set Title of Service" icon={<FaBlog />} register={register} required errors={errors} errorMessage="This field is required" />
                     <TextInput type="text" name="description" placeholder="Set Description" icon={<FaBlog />} register={register} required errors={errors} errorMessage="This field is required" />
-
+                    <TextInput type="text" name="description" placeholder="Set Description" icon={<FaBlog />} register={register} required errors={errors} errorMessage="This field is required" />
+                    <ImageInput type="file" name="photo" register={register} required errors={errors} errorMessage="This field is required" />
                     <div className={classes.buttonDiv}>
                         <Button text="Create Service" type='submit' color="green" />
                     </div>
