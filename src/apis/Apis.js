@@ -122,22 +122,37 @@ class Apis {
         });
     };
 
-    CreateProduct = ({ title, description, history, userId }) => {
-        firebase.database().ref('products/' + userId + '/' + title).set({
-            title: title,
-            description: description,
-        }, (error) => {
-            if (error) {
-                console.log(error)
-                // The write failed...
-            } else {
-                ToastService('Service Created Successfully', true);
-                history.push('/MyServices')
+    CreateProduct = async ({ title, description, history, userId }) => {
+        database.ref('/users/' + userId)
+            .once('value')
+            .then(snapshot => {
+                if (snapshot.val().fullName === '') {
+                    ToastService('Please fill all of your information before posting a service');
+                    history.push('/Profile');
+                    return;
+                }
+                return snapshot.val().fullName;
+            }).then((res) => {
+                firebase.database().ref('products/' + userId + '/' + title).set({
+                    owner: res,
+                    title: title,
+                    description: description,
+                }, (error) => {
+                    if (error) {
+                        console.log(error)
+                        // The write failed...
+                    } else {
+                        ToastService('Service Created Successfully', true);
+                        history.push('/MyServices')
 
-                // Data saved successfully!
+                        // Data saved successfully!
 
-            }
-        });
+                    }
+                });
+            }).catch((err) => {
+                console.log(err)
+            });
+
     };
 
     GetUserProduct = (user) => {

@@ -43,12 +43,11 @@ function ProfilePage() {
                     setValue('address', res.address)
                     setValue('addressTwo', res.addressTwo)
                 });// This is be executed when `loading` state changes
-                getData()
             } else {
                 // No user is signed in.
             }
         });
-
+        getData()
     }, [setValue])
 
 

@@ -9,16 +9,16 @@ function Card({ title, description, user }) {
                 <div className={classes.header}>
                     <div className={classes.initContainer}>
                         <div className={classes.init}>
-                            R
-                    </div>
+                            {user[0].toUpperCase()}
+                        </div>
                     </div>
                     <div>
                         <div className={classes.title}>
                             {title}
-                    </div>
+                        </div>
                         <div className={classes.owner}>
                             {user}
-                    </div>
+                        </div>
                     </div>
                     <div className={classes.heartContainer}>
                         <FaHeart className={classes.heart} />

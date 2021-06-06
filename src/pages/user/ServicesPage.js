@@ -46,7 +46,7 @@ function ServicesPage() {
                         :
                         products.map((product, index) => {
                             return (
-                                <Card key={product.title} title={product.title} description={product.description} user={'Owner'} />
+                                <Card key={product.title} title={product.title} description={product.description} user={product.owner} />
                             )
                         })
                     }
