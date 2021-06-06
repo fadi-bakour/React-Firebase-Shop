@@ -8,13 +8,13 @@ import { FaSearch } from 'react-icons/fa';
 import apis from '../../apis/Apis';
 
 function ServicesPage() {
-    const [products, setProducts] = useState([]);
+    const [services, setServices] = useState([]);
     const { register, watch } = useForm();
 
     useEffect(() => {
         document.title = 'My Services';
-        apis.GetAllProducts().then((res) => {
-            setProducts(res);
+        apis.GetAllServices().then((res) => {
+            setServices(res);
         });
     }, []);
 
@@ -41,12 +41,12 @@ function ServicesPage() {
             </div>
             <div className={`container ${classes.cardsContainer}`}>
                 <div className="row mt-4 mb-4">
-                    {!products ?
-                        <h3 className="col-12 text-center mt-5 mb-5"> No products </h3>
+                    {!services ?
+                        <h3 className="col-12 text-center mt-5 mb-5"> No services </h3>
                         :
-                        products.map((product, index) => {
+                        services.map((service, index) => {
                             return (
-                                <Card key={product.title} title={product.title} description={product.description} user={product.owner} />
+                                <Card key={service.title} title={service.title} description={service.description} user={service.owner} edit={false}/>
                             )
                         })
                     }

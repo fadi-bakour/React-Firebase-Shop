@@ -17,7 +17,7 @@ function CreateServicePage() {
         var createService = firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
                 const userId = user.uid;
-                apis.CreateProduct({ title, description, history, userId });
+                apis.CreateService({ title, description, history, userId });
             } else {
                 console.log('failed')
             }
@@ -41,11 +41,11 @@ function CreateServicePage() {
             </div>
             <div className="container">
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <TextInput type="text" name="title" placeholder="Set Title of Product" icon={<FaBlog />} register={register} required errors={errors} errorMessage="This field is required" />
+                    <TextInput type="text" name="title" placeholder="Set Title of Service" icon={<FaBlog />} register={register} required errors={errors} errorMessage="This field is required" />
                     <TextInput type="text" name="description" placeholder="Set Description" icon={<FaBlog />} register={register} required errors={errors} errorMessage="This field is required" />
 
                     <div className={classes.buttonDiv}>
-                        <Button text="Create Product" type='submit' color="green" />
+                        <Button text="Create Service" type='submit' color="green" />
                     </div>
                 </form>
             </div>

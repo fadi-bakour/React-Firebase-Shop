@@ -1,8 +1,9 @@
 import React from 'react'
 import classes from './Card.module.css'
 import Image from '../assets/services/header.png'
-import { FaHeart } from 'react-icons/fa'
-function Card({ title, description, user }) {
+import { FaEdit } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
+function Card({ title, description, user, edit,id }) {
     return (
         <div className="col-lg-4 col-md-6 mt-3 mb-3">
             <div className={classes.container}>
@@ -20,9 +21,12 @@ function Card({ title, description, user }) {
                             {user}
                         </div>
                     </div>
-                    <div className={classes.heartContainer}>
-                        <FaHeart className={classes.heart} />
-                    </div>
+                    {edit ? (
+                        <Link to={{ pathname: '/MyServices/Edit/', state: { serviceId: id } }} className={classes.heartContainer} >
+                            <FaEdit className={classes.heart} />
+                        </Link>
+                    ) : (null)
+                    }
                 </div>
                 <div className={classes.body}>
                     <img src={Image} className={classes.cardImage} alt="" />

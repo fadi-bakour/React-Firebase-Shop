@@ -10,13 +10,23 @@ import apis from '../../apis/Apis';
 
 
 function MyServicesPage() {
-    const [products, setProducts] = useState([]);
+    const [services, setServices] = useState([]);
     useEffect(() => {
         document.title = 'My Services';
         const myServices = firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
-                apis.GetUserProduct(user).then((res) => {
-                    setProducts(res);
+                let services = [];
+                apis.GetUserServices(user).then((res) => {
+                    if (res) {
+                        for (let i = 0; i < res.length; i++) {
+                            res[i][1].id = res[i][0];
+                            services.push(res[i][1])
+                        }
+                        setServices(services);
+                    }else{
+                        setServices('');
+                    }
+
                 });// This is be executed when `loading` state changes
             } else {
                 // No user is signed in.
@@ -43,12 +53,12 @@ function MyServicesPage() {
             </div>
             <div className={`container ${classes.cardsContainer}`}>
                 <div className="row mt-4 mb-4">
-                    {!products ?
-                        <h3 className="col-12 text-center mt-5 mb-5"> You have no products </h3>
+                    {!services ?
+                        <h3 className="col-12 text-center mt-5 mb-5"> You have no services </h3>
                         :
-                        products.map((product, index) => {
+                        services.map((service, index) => {
                             return (
-                                <Card key={product.title} title={product.title} description={product.description} user={product.owner} />
+                                <Card key={service.title} title={service.title} description={service.description} user={service.owner} edit={true} id={service.id} />
                             )
                         })
                     }

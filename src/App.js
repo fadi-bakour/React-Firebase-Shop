@@ -81,7 +81,7 @@ function App({ Token }) {
             </>
           )}
         </Route>
-        <Route path="/Favorites" exact>
+        {/* <Route path="/Favorites" exact>
           {Token == null ? (
             <Redirect to={{ pathname: '/Login' }} />
           ) : (
@@ -91,7 +91,7 @@ function App({ Token }) {
               <Footer />
             </>
           )}
-        </Route>
+        </Route> */}
         <Route path="/MyServices" exact>
           {Token == null ? (
             <Redirect to={{ pathname: '/Login' }} />

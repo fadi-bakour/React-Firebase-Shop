@@ -32,7 +32,7 @@ function NavBar({SignOut}) {
             <div className={smallNav === true ? classes.rightSide : classes.rightSideHide}>
                 <NavBarItem link="/" text="Home" />
                 <NavBarItem link="/Services" text="Services" />
-                <NavBarItem link="/Favorites" text="Favorites" />
+                {/* <NavBarItem link="/Favorites" text="Favorites" /> */}
                 <NavBarItem link="/MyServices" text="My Services" />
                 <NavBarItem link="/Profile" text="Profile" />
                 <div className={classes.navBarButtonContainer}>

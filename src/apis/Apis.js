@@ -122,7 +122,7 @@ class Apis {
         });
     };
 
-    CreateProduct = async ({ title, description, history, userId }) => {
+    CreateService = async ({ title, description, history, userId }) => {
         database.ref('/users/' + userId)
             .once('value')
             .then(snapshot => {
@@ -133,7 +133,9 @@ class Apis {
                 }
                 return snapshot.val().fullName;
             }).then((res) => {
-                firebase.database().ref('products/' + userId + '/' + title).set({
+                var postListRef = firebase.database().ref('services/' + userId);
+                var newPostRef = postListRef.push();
+                newPostRef.set({
                     owner: res,
                     title: title,
                     description: description,
@@ -155,43 +157,84 @@ class Apis {
 
     };
 
-    GetUserProduct = (user) => {
+    GetUserServices = (user) => {
         return (async () => {
             return await database
-                .ref('/products/' + user.uid)
+                .ref('/services/' + user.uid)
                 .once('value')
                 .then(snapshot => {
                     var response = snapshot.val()
                     var arr = [];
-                    arr.push(Object.values(response));
-                    return arr[0];
+                    var responseArray = Object.entries(response);
+                    return responseArray;
                 }).catch((err) => {
                     console.log(err)
                 });
         })();
     };
 
-    GetAllProducts = () => {
+    GetAllServices = () => {
         return (async () => {
             return await database
-                .ref('/products')
+                .ref('/services')
                 .once('value')
                 .then(snapshot => {
-                    var allProducts = Object.values(snapshot.val());
-                    var product = [];
-                    var allProductsValues = [];
-                    for (let i = 0; i < allProducts.length; i++) {
-                        product = Object.values(allProducts[i]);
-                        for (let j = 0; j < product.length; j++) {
-                            allProductsValues.push(product[j]);
+                    var allServices = Object.values(snapshot.val());
+                    var service = [];
+                    var allServicesValues = [];
+                    for (let i = 0; i < allServices.length; i++) {
+                        service = Object.values(allServices[i]);
+                        for (let j = 0; j < service.length; j++) {
+                            allServicesValues.push(service[j]);
                         }
                     }
-                    return allProductsValues;
+                    return allServicesValues;
                 }).catch((err) => {
                     console.log(err)
                 });
         })();
     }
+
+    EditService = ({ title, description, history, userId, serviceId }) => {
+        database.ref('/users/' + userId)
+            .once('value')
+            .then(snapshot => {
+                return snapshot.val().fullName;
+            }).then((res) => {
+                firebase.database().ref('services/' + userId + '/' + serviceId).set({
+                    owner: res,
+                    title: title,
+                    description: description,
+                }, (error) => {
+                    if (error) {
+                        console.log(error)
+                        // The write failed...
+                    } else {
+                        ToastService('Service Updated', true);
+                        history.push('/MyServices')
+
+                        // Data saved successfully!
+
+                    }
+                });
+            }).catch((err) => {
+                console.log(err)
+            });
+    };
+
+    
+    ServiceData = (user,serviceId) => {
+        return (async () => {
+            return await database
+                .ref('/services/' + user.uid + '/' + serviceId)
+                .once('value')
+                .then(snapshot => {
+                    return snapshot.val();
+                }).catch((err) => {
+                    console.log(err)
+                });
+        })();
+    };
 
 }
 
