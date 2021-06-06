@@ -256,19 +256,30 @@ class Apis {
             return await database
                 .ref('/services/' + user.uid + '/' + serviceId)
                 .once('value')
-                .then( async snapshot => {
+                .then(async snapshot => {
                     var response = snapshot.val();
                     var photo = await firebase.storage().ref('products/' + user.uid + '/' + serviceId).getDownloadURL().then((photo) => {
                         return photo
                     });
                     response.photo = photo
-                    console.log(response)
                     return response;
                 }).catch((err) => {
                     console.log(err)
                 });
         })();
     };
+
+    DeleteService = ({ user, serviceId, history }) => {
+        firebase.storage().ref('/products/' + user.uid + '/' + serviceId).delete().then(() => {
+            database.ref('/services/' + user.uid + '/' + serviceId).remove().then(() => {
+                ToastService('Service Deleted', true);
+                history.push('/MyServices')
+            })
+        }).catch((err) => {
+            console.log(err)
+        })
+
+    }
 
 }
 

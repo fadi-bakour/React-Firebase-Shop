@@ -7,6 +7,7 @@
   text-align: center;
   font-size: 17px;
   display: inline-block;
+  margin: 0px 5px;
 }
 
 .button:hover {
@@ -15,16 +16,20 @@
   cursor: pointer;
 }
 
-.buttonWhite {
-  border: 1px solid silver;
+.buttonRed {
+  background: #740e0e;
+  border: 1px solid #740e0e;
+  color: white;
   padding: 10px 30px;
   border-radius: 5px;
   text-align: center;
   font-size: 17px;
   display: inline-block;
+  margin: 0px 5px;
 }
 
-.buttonWhite:hover {
-  color: #275ebe;
+.buttonRed:hover {
+  color: black;
+  background: none;
   cursor: pointer;
 }

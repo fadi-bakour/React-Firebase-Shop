@@ -30,6 +30,18 @@ function EditServicePage() {
         });
         EditService();
     };
+
+    const deleteService = () => {
+        const serviceId = location.state.serviceId;
+        var DeleteService = firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                apis.DeleteService({ user, serviceId, history });
+            } else {
+                console.log('failed')
+            }
+        });
+        DeleteService();
+    }
     const { register, handleSubmit, formState: { errors }, setValue } = useForm();
 
 
@@ -71,6 +83,7 @@ function EditServicePage() {
                     <TextInput type="text" defaultValue={title} name="title" placeholder="Edit Title of Service" icon={<FaBlog />} register={register} required errors={errors} errorMessage="This field is required" />
                     <TextInput type="text" defaultValue={description} name="description" placeholder="Edit Description" icon={<FaBlog />} register={register} required errors={errors} errorMessage="This field is required" />
                     <div className={classes.buttonDiv}>
+                        <Button text="Delete Service" type='button' color="red" onClick={deleteService} />
                         <Button text="Edit Service" type='submit' color="green" />
                     </div>
                 </form>
