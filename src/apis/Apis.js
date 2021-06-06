@@ -150,9 +150,9 @@ class Apis {
                         } else {
                             ToastService('Service Created Successfully', true);
                             history.push('/MyServices')
-    
+
                             // Data saved successfully!
-    
+
                         }
                     });
                 })
@@ -172,7 +172,7 @@ class Apis {
                     if (response) {
                         response = Object.entries(response);
                         return response;
-                    }else{
+                    } else {
                         return response;
                     }
                 }).catch((err) => {
@@ -191,7 +191,7 @@ class Apis {
                     if (response) {
                         response = Object.entries(response);
                         return response;
-                    }else{
+                    } else {
                         return response;
                     }
                 }).catch((err) => {
@@ -200,28 +200,51 @@ class Apis {
         })();
     }
 
-    EditService = ({ title, description, history, userId, serviceId }) => {
+    EditService = ({ title, description, photo, history, userId, serviceId }) => {
         database.ref('/users/' + userId)
             .once('value')
             .then(snapshot => {
                 return snapshot.val().fullName;
             }).then((res) => {
-                firebase.database().ref('services/' + userId + '/' + serviceId).set({
-                    owner: res,
-                    title: title,
-                    description: description,
-                }, (error) => {
-                    if (error) {
-                        console.log(error)
-                        // The write failed...
-                    } else {
-                        ToastService('Service Updated', true);
-                        history.push('/MyServices')
+                if (photo.length != 0) {
+                    storage.ref('/products/' + userId + '/' + serviceId).delete().then(() => {
+                        storage.ref('/products/' + userId + '/' + serviceId).put(photo[0], photo[0].type).then(() => {
+                            firebase.database().ref('services/' + userId + '/' + serviceId).set({
+                                owner: res,
+                                title: title,
+                                description: description,
+                            }, (error) => {
+                                if (error) {
+                                    console.log(error)
+                                    // The write failed...
+                                } else {
+                                    ToastService('Service Updated', true);
+                                    history.push('/MyServices')
 
-                        // Data saved successfully!
+                                    // Data saved successfully!
 
-                    }
-                });
+                                }
+                            });
+                        })
+                    })
+                } else {
+                    firebase.database().ref('services/' + userId + '/' + serviceId).set({
+                        owner: res,
+                        title: title,
+                        description: description,
+                    }, (error) => {
+                        if (error) {
+                            console.log(error)
+                            // The write failed...
+                        } else {
+                            ToastService('Service Updated', true);
+                            history.push('/MyServices')
+
+                            // Data saved successfully!
+
+                        }
+                    });
+                }
             }).catch((err) => {
                 console.log(err)
             });
@@ -233,8 +256,14 @@ class Apis {
             return await database
                 .ref('/services/' + user.uid + '/' + serviceId)
                 .once('value')
-                .then(snapshot => {
-                    return snapshot.val();
+                .then( async snapshot => {
+                    var response = snapshot.val();
+                    var photo = await firebase.storage().ref('products/' + user.uid + '/' + serviceId).getDownloadURL().then((photo) => {
+                        return photo
+                    });
+                    response.photo = photo
+                    console.log(response)
+                    return response;
                 }).catch((err) => {
                     console.log(err)
                 });

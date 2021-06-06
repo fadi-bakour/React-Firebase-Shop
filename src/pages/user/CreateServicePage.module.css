@@ -9,3 +9,15 @@
     background: #2fcc76;
     padding: 15px;
   }
+
+  .body {
+    border: 1px solid silver;
+    max-width: 300px;
+    margin: 50px auto;
+    border-radius: 100%;
+  }
+  .cardImage {
+    max-width: 100%;
+    border-radius: 100%;
+
+  }
